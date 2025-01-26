@@ -5,6 +5,7 @@ function limparCampo() {
     nome = document.querySelector('input');
     nome.value = '';
 }
+
 //função para adicionar os nome dos amigos
 function adicionarAmigo(){
 
@@ -15,15 +16,30 @@ function adicionarAmigo(){
         if(nome.length == 1){
             alert('O nome deve conter mais de uma letra')
             limparCampo();
-        }else{
+        }else{ 
             amigos.push(nome);
             limparCampo();
-            return listaAmigos.innerHTML = amigos;
+            mostrarLista();
             
         }
-
+        
     }
+   
 }
+
+//função para percorrer o array e add em "li"
+function mostrarLista() {
+    let lista = document.getElementById('listaAmigos');
+    lista.innerHTML = "";
+
+    amigos.forEach(amigo => {
+        let li = document.createElement('li'); // Cria um elemento <li>
+        li.textContent = amigo; // Define o texto do <li>
+        lista.appendChild(li); // Adiciona o <li> à lista
+    });
+
+}
+
 //função para sotear um nome 
 function sortearAmigo(){
     if(amigos == ""){
@@ -34,8 +50,11 @@ function sortearAmigo(){
         //console.log(qtd);
         let nomeEscolhido = parseInt(Math.random()*qtd);
         console.log(nomeEscolhido);
+        //listaAmigos.innerHTML = "";
         return resultado.innerHTML = amigos[nomeEscolhido];
 
     }
     
 }
+
+
